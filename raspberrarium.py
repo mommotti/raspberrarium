@@ -34,12 +34,11 @@ MOON_WINDOW_HOURS = 3
 REFRESH_SECONDS = 10
 
 # Project brightness presets.
-# 1 = dimmest, 4 = brightest
+# 1 = dimmest, 3 = brightest
 BRIGHTNESS_LEVELS = {
-    1: 0.40,
-    2: 0.65,
-    3: 0.85,
-    4: 1.00,
+    1: 0.60,
+    2: 0.80,
+    3: 1.00,
 }
 
 pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
@@ -89,9 +88,9 @@ def parse_args():
     parser.add_argument(
         "--brightness",
         type=int,
-        choices=[1, 2, 3, 4],
+        choices=[1, 2, 3],
         default=3,
-        help="Project brightness level from 1 to 4",
+        help="Project brightness level from 1 to 3",
     )
     return parser.parse_args()
 

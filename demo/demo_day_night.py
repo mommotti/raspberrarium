@@ -1,41 +1,67 @@
-import board
-import neopixel
+import argparse
 import time
 
-pixels = neopixel.NeoPixel(board.D18, 2, auto_write=False)
+import board
+import neopixel
 
-# softer + less intense
-MOON_COLOR = (30, 30, 45)
+LED_COUNT = 2
+PIXEL_PIN = board.D18
 
-def scale_color(color, factor):
-    return tuple(int(c * factor) for c in color)
+BRIGHTNESS_LEVELS = {
+    1: 0.60,
+    2: 0.80,
+    3: 1.00,
+}
 
-def set_moon(left, right, brightness):
-    pixels.brightness = brightness
-    pixels[0] = scale_color(MOON_COLOR, left)
-    pixels[1] = scale_color(MOON_COLOR, right)
+pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Raspberrarium day/night demo")
+    parser.add_argument(
+        "--brightness",
+        type=int,
+        choices=[1, 2, 3],
+        default=3,
+        help="Project brightness level from 1 to 3",
+    )
+    return parser.parse_args()
+
+
+def apply_project_brightness(base_brightness, level):
+    multiplier = BRIGHTNESS_LEVELS.get(level, 1.0)
+    return max(0.0, min(1.0, base_brightness * multiplier))
+
+
+def set_all(rgb, brightness):
+    pixels.brightness = max(0.0, min(1.0, brightness))
+    for i in range(LED_COUNT):
+        pixels[i] = rgb
     pixels.show()
 
-phases = [
-    ("New moon",         0.0, 0.0, 0.0),   # moon off.
 
-    ("Waxing crescent",  0.03, 0.65, 0.045),
+def main():
+    args = parse_args()
 
-    ("First quarter",    0.15, 0.85, 0.055),
+    phases = [
+        ("Deep night", (0, 0, 2), 0.02, 2),
+        ("Pre-dawn", (40, 10, 4), 0.05, 2),
+        ("Sunrise", (255, 90, 30), 0.11, 2),
+        ("Morning", (255, 130, 55), 0.18, 2),
+        ("Day", (255, 170, 90), 0.28, 3),
+        ("Sunset", (255, 70, 20), 0.10, 2),
+        ("Night return", (0, 0, 3), 0.03, 2),
+        # Full moon baseline at the end so both LEDs can be checked clearly
+        ("Full moon baseline", (30, 30, 45), 0.08, 3),
+    ]
 
-    ("Waxing gibbous",   0.50, 1.00, 0.065),
+    while True:
+        for name, rgb, base_brightness, seconds in phases:
+            final_brightness = apply_project_brightness(base_brightness, args.brightness)
+            print(f"{name} | RGB={rgb} | brightness={final_brightness:.3f}")
+            set_all(rgb, final_brightness)
+            time.sleep(seconds)
 
-    ("Full moon",        1.00, 1.00, 0.08),
 
-    ("Waning gibbous",   1.00, 0.50, 0.065),
-
-    ("Last quarter",     0.85, 0.15, 0.055),
-
-    ("Waning crescent",  0.65, 0.03, 0.045),
-]
-
-while True:
-    for name, left, right, brightness in phases:
-        print(name)
-        set_moon(left, right, brightness)
-        time.sleep(3)
+if __name__ == "__main__":
+    main()
