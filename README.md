@@ -187,29 +187,33 @@ Your main script will be located at:
 
 ## Run
 
-Default (default brightness is 3, console logs are ON):
+Run the main script:
 
 ```bash
-sudo python3 raspberrarium.py
+sudo python3 raspberrarium.py --brightness 3 --silent
 ```
 
-Silent mode (no console logs):
+- `--brightness` sets the brightness level (1 = lowest, 3 = highest)  
+- `--silent` disables console logs (optional, remove it if you want logs)
+
+*Note: At lower brightness levels (1–2), the LEDs may appear off during certain phases.*
+
+---
+
+## Demos
+
+You can use the demo scripts to quickly test the LEDs and compare brightness levels (1,2,3).
+
+The day/night demo cycles through lighting states and ends with a full moon baseline (both LEDs on):
 
 ```bash
-sudo python3 raspberrarium.py --silent
+sudo python3 demo/demo_day_night.py --brightness 3
 ```
 
-Set the brightness level (1 = lowest, 3 = highest).
-_Note: At low brightness levels (1–2), the LEDs may appear off during certain phases due to very low output._
+The moon demo cycles through all moon phases:
 
 ```bash
-sudo python3 raspberrarium.py --brightness 2
-```
-
-Combine options:
-
-```bash
-sudo python3 raspberrarium.py --silent --brightness 3
+sudo python3 demo/demo_moon_phase.py --brightness 3
 ```
 
 ---
