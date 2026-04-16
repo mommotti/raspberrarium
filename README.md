@@ -19,7 +19,7 @@
 ---
 
 A minimal lighting system using a Raspberry Pi and two WS2812 LEDs.
-_(update! Added 96 light steps and 4 levels of brightness)_
+_(update! Added 96 light steps and 3 levels of brightness)_
 
 This project simulates:
 
@@ -146,7 +146,7 @@ Raspberry Pi 3B+:
 - 96-step daily light cycle (smooth transitions)
 - Real sunrise and sunset based on location
 - Moon phase simulation using two LEDs
-- Adjustable global brightness (levels 1–4)
+- Adjustable global brightness (levels 1–3)
 - Optional silent mode (no console output)
 - Automatic daily recalculation of sun and moon data
 
@@ -199,11 +199,11 @@ Silent mode (no console logs):
 sudo python3 raspberrarium.py --silent
 ```
 
-Set the brightness level (1 = lowest, 4 = highest).
+Set the brightness level (1 = lowest, 3 = highest).
 _Note: At low brightness levels (1–2), the LEDs may appear off during certain phases due to very low output._
 
 ```bash
-sudo python3 raspberrarium.py --brightness 4
+sudo python3 raspberrarium.py --brightness 2
 ```
 
 Combine options:
@@ -230,7 +230,7 @@ Description=Raspberrarium Lighting System
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/YOUR_USERNAME_HERE/raspberrarium/raspberrarium.py --silent --brightness 4
+ExecStart=/usr/bin/python3 /home/YOUR_USERNAME_HERE/raspberrarium/raspberrarium.py --silent --brightness 3
 WorkingDirectory=/home/YOUR_USERNAME_HERE/raspberrarium
 Restart=always
 RestartSec=5
