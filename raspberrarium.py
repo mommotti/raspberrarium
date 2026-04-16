@@ -36,10 +36,10 @@ REFRESH_SECONDS = 10
 # Project brightness presets.
 # 1 = dimmest, 4 = brightest
 BRIGHTNESS_LEVELS = {
-    1: 0.55,
-    2: 0.75,
-    3: 1.00,
-    4: 1.25,
+    1: 0.40,
+    2: 0.65,
+    3: 0.85,
+    4: 1.00,
 }
 
 pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
