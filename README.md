@@ -53,7 +53,7 @@ Because of this, the focus of the project is **only on lighting simulation**.
 
 This repository does **not** cover:
 
-- how to build a terrarium — see the [Raspberrarium build guide](https://mommotti.github.io/raspberrarium-site/)
+- how to build a terrarium. Please check my [Raspberrarium build guide](https://mommotti.github.io/raspberrarium-site/)
 - how to design the container
 - plant selection or environmental control
 
