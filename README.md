@@ -279,7 +279,12 @@ The electronics, the 96-step cycle, and the moon-phase logic all live in this re
 ---
 
 <p align="center">
-  <sub>made with ♡ by <a href="https://github.com/mommotti/raspberrarium">mommotti</a></sub>
+  If you enjoyed this little project and would like to support future builds,<br>
+  a small donation is always appreciated. 🌱💚
+</p>
+
+<p align="center">
+  <a href="https://paypal.me/mommotti"><img src="https://img.shields.io/badge/Donate%20via%20PayPal-2a7a4c?style=for-the-badge&logo=paypal&logoColor=white" alt="Donate via PayPal"></a>
 </p>
 
 <p align="center">
