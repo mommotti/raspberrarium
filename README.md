@@ -2,9 +2,13 @@
   <img src="images/hero-title-v2.svg" alt="Raspberrarium" width="620">
 </p>
 
-<p align="center">
-  <img src="images/brand-lockup.svg" alt="Raspberry + MOTHER NATURE" width="280">
-</p>
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle"><img src="images/raspberry-pi-transparent.png" width="56" alt="Raspberry Pi logo"></td>
+    <td align="center" valign="middle">&nbsp;&nbsp;&nbsp;<strong>+</strong>&nbsp;&nbsp;&nbsp;</td>
+    <td align="center" valign="middle"><img src="images/mother-nature.svg" width="100" alt="MOTHER NATURE"></td>
+  </tr>
+</table>
 
 <p align="center">
   <em>A tiny self-contained terrarium paired with a Raspberry&nbsp;Pi lighting system<br>
@@ -185,6 +189,22 @@ Your main script will be located at:
 
 ---
 
+## Set your location
+
+Before running the script, open `time_steps..py` and set your timezone and coordinates. The sunrise, sunset, and moon phase calculations depend on these values.
+
+```python
+# TIMEZONE must follow IANA format (e.g. "Europe/Rome", "America/New_York")
+# Full list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+TIMEZONE = "Europe/Rome"
+
+# Latitude / Longitude — find yours on Google Maps (right-click → "What's here?")
+LATITUDE = 00.00
+LONGITUDE = 00.00
+```
+
+---
+
 ## Run
 
 Run the main script:
@@ -200,7 +220,7 @@ sudo python3 raspberrarium.py --brightness 3 --silent
 
 ---
 
-## Demos
+## Run the Demos
 
 You can use the demo scripts to quickly test the LEDs and compare brightness levels (1,2,3).
 
