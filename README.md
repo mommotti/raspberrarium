@@ -2,13 +2,11 @@
   <img src="images/hero-title-v2.svg" alt="Raspberrarium" width="620">
 </p>
 
-<table align="center" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td align="center" valign="middle"><img src="images/raspberry-pi-transparent.png" width="56" alt="Raspberry Pi logo"></td>
-    <td align="center" valign="middle">&nbsp;&nbsp;&nbsp;<strong>+</strong>&nbsp;&nbsp;&nbsp;</td>
-    <td align="center" valign="middle"><img src="images/mother-nature.svg" width="100" alt="MOTHER NATURE"></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="images/raspberry-pi-transparent.png" width="56" alt="Raspberry Pi logo">
+  &nbsp;&nbsp;&nbsp;<b>+</b>&nbsp;&nbsp;&nbsp;
+  <img src="images/mother-nature.svg" width="130" alt="MOTHER NATURE">
+</p>
 
 <p align="center">
   <em>A tiny self-contained terrarium paired with a Raspberry&nbsp;Pi lighting system<br>
@@ -220,7 +218,7 @@ sudo python3 raspberrarium.py --brightness 3 --silent
 
 ---
 
-## Run the Demos
+## Run the demos
 
 You can use the demo scripts to quickly test the LEDs and compare brightness levels (1,2,3).
 

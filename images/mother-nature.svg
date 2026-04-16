@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" width="160" height="60">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 64" width="180" height="64">
   <style>
     .brand {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
       font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 3.2px;
+      font-size: 18px;
+      letter-spacing: 3.6px;
       fill: #2a7a4c;
     }
   </style>
-  <text x="80" y="26" text-anchor="middle" class="brand">MOTHER</text>
-  <text x="80" y="48" text-anchor="middle" class="brand">NATURE</text>
+  <text x="90" y="28" text-anchor="middle" class="brand">MOTHER</text>
+  <text x="90" y="52" text-anchor="middle" class="brand">NATURE</text>
 </svg>
