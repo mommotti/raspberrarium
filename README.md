@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/hero-title.svg" alt="Raspberrarium" width="620">
+  <img src="images/hero-title-v2.svg" alt="Raspberrarium" width="620">
 </p>
 
 <p align="center">
