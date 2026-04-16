@@ -3,9 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="images/raspberry-pi-transparent.png" width="56" alt="Raspberry Pi logo">
-  &nbsp;&nbsp;&nbsp;<b>+</b>&nbsp;&nbsp;&nbsp;
-  <img src="images/mother-nature.svg" width="130" alt="MOTHER NATURE">
+  <img src="images/brand-lockup.png" width="280" alt="Raspberry Pi + MOTHER NATURE">
 </p>
 
 <p align="center">
