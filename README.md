@@ -1,11 +1,9 @@
 <p align="center">
-  <img src="images/hero-title.svg" alt="Raspberrarium — Build Guide" width="620">
+  <img src="images/hero-title.svg" alt="Raspberrarium" width="620">
 </p>
 
 <p align="center">
-  <img src="images/raspberry.jpg" alt="Raspberry Pi logo" width="44" align="middle">
-  &nbsp;<sub><sub>+</sub></sub>&nbsp;
-  <img src="images/mother-nature.svg" alt="MOTHER NATURE" width="90" align="middle">
+  <img src="images/brand-lockup.svg" alt="Raspberry + MOTHER NATURE" width="280">
 </p>
 
 <p align="center">
