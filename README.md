@@ -1,25 +1,43 @@
-# Raspberrarium
-
 <p align="center">
-  <img src="images/jar.jpg" width="300">
-  <img src="images/raspberrarium.jpg" width="300" style="margin-left:10px;">
+  <img src="images/hero-title.svg" alt="Raspberrarium — Build Guide" width="620">
 </p>
 
+<p align="center">
+  <img src="images/raspberry.jpg" alt="Raspberry Pi logo" width="44" align="middle">
+  &nbsp;<sub><sub>+</sub></sub>&nbsp;
+  <img src="images/mother-nature.svg" alt="MOTHER NATURE" width="90" align="middle">
+</p>
+
+<p align="center">
+  <em>A tiny self-contained terrarium paired with a Raspberry&nbsp;Pi lighting system<br>
+  that simulates a full day/night cycle and the phases of the&nbsp;moon.</em>
+</p>
+
+<p align="center">
+  <img src="images/jar.jpg" width="290">
+  <img src="images/raspberrarium.jpg" width="290">
+</p>
+
+---
+
 A minimal lighting system using a Raspberry Pi and two WS2812 LEDs.
-(update! Added 96 light steps and 4 levels of brightness)
+_(update! Added 96 light steps and 4 levels of brightness)_
 
 This project simulates:
+
 - a real daylight cycle (sunrise, noon, sunset)
 - real moon phases during the night
 - a smooth 24-hour light progression using 96 time steps
 
 ---
 
-## Terrarium build guide (coming soon!!)
+## 🫙 Terrarium build guide
 
-A full step-by-step guide on how to build the physical terrarium will be added here.
+The full step-by-step guide on how to build the physical terrarium is **live** here:
 
-👉 [LINK TO TERRARIUM GUIDE WILL BE ADDED HERE]
+### 👉 **[mommotti.github.io/raspberrarium-site](https://mommotti.github.io/raspberrarium-site/)**
+
+The guide covers the jar, the layered substrate, the lid with ventilation and watering holes, and how the LEDs are mounted and diffused inside the enclosure.
 
 ---
 
@@ -28,6 +46,7 @@ A full step-by-step guide on how to build the physical terrarium will be added h
 This project is designed for **small-scale containers**.
 
 The container can be anything:
+
 - a glass jar
 - a small terrarium
 - any enclosed decorative space
@@ -35,7 +54,8 @@ The container can be anything:
 Because of this, the focus of the project is **only on lighting simulation**.
 
 This repository does **not** cover:
-- how to build a terrarium 👉 [LINK TO TERRARIUM GUIDE WILL BE ADDED HERE]
+
+- how to build a terrarium — see the [Raspberrarium build guide](https://mommotti.github.io/raspberrarium-site/)
 - how to design the container
 - plant selection or environmental control
 
@@ -58,17 +78,19 @@ This scale is important because the lighting is tuned for **very small enclosed 
 
 The system uses only **two LEDs**, mapped as:
 
-- LED 0 → left side  
-- LED 1 → right side  
+- LED 0 → left side
+- LED 1 → right side
 
 This allows a simple but effective representation of the moon:
 
-- waxing phases → brighter on the right  
-- waning phases → brighter on the left  
-- full moon → both LEDs on  
-- new moon → off  
+- waxing phases → brighter on the right
+- waning phases → brighter on the left
+- full moon → both LEDs on
+- new moon → off
 
 The daylight cycle is divided into **96 steps per day** (one every 15 minutes), creating a smooth transition between all phases of the day.
+
+> The build guide on [mommotti.github.io/raspberrarium-site](https://mommotti.github.io/raspberrarium-site/) shows how the two LEDs look once mounted and diffused inside the jar.
 
 ---
 
@@ -80,11 +102,15 @@ The daylight cycle is divided into **96 steps per day** (one every 15 minutes), 
   <img src="images/demo_day_night.gif" width="350">
 </p>
 
+_The GIF is a sped-up demo made from a shortened version of the code for illustration; the real code runs the full 96-step cycle over 24 hours._
+
 ### Moon phases
 
 <p align="center">
   <img src="images/demo_moon_phase.gif" width="350">
 </p>
+
+_The GIF is also a sped-up demo; in the actual build each phase lasts around a week, following the real lunar cycle._
 
 ---
 
@@ -96,10 +122,10 @@ The daylight cycle is divided into **96 steps per day** (one every 15 minutes), 
 
 This project keeps the logic simple.
 
-- LED 0 is always treated as the left side  
-- LED 1 is always treated as the right side  
+- LED 0 is always treated as the left side
+- LED 1 is always treated as the right side
 
-If you are in the southern hemisphere, simply rotate the container/led.
+If you are in the southern hemisphere, simply rotate the container/LED.
 
 ---
 
@@ -112,7 +138,7 @@ If you are in the southern hemisphere, simply rotate the container/led.
 Raspberry Pi 3B+:
 
 - Pin 1 (3.3V) or Pin 2 (5V)
-- Pin 6 (GND)  
+- Pin 6 (GND)
 - Pin 12
 
 ---
@@ -176,7 +202,7 @@ sudo python3 raspberrarium.py --silent
 ```
 
 Set the brightness level (1 = lowest, 4 = highest).
-*Note: At low brightness levels (1–2), the LEDs may appear off during certain phases due to very low output.*
+_Note: At low brightness levels (1–2), the LEDs may appear off during certain phases due to very low output._
 
 ```bash
 sudo python3 raspberrarium.py --brightness 4
@@ -246,4 +272,18 @@ With only two LEDs, the goal is not astronomical precision but a clean and reada
 
 ---
 
-# Have fun! 🌱💚/(^o^)/🫙🌱
+## Build your own
+
+The electronics, the 96-step cycle, and the moon-phase logic all live in this repository. The physical build — the jar, substrate layers, lid, and lighting enclosure — is documented with photos in the companion guide:
+
+### 👉 **[mommotti.github.io/raspberrarium-site](https://mommotti.github.io/raspberrarium-site/)**
+
+---
+
+<p align="center">
+  <sub>made with ♡ by <a href="https://github.com/mommotti/raspberrarium">mommotti</a></sub>
+</p>
+
+<p align="center">
+  Have fun! 🌱💚/(^o^)/🫙🌱
+</p>

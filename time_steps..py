@@ -5,9 +5,22 @@ from astral import LocationInfo
 from astral.sun import sun
 
 
-TIMEZONE = "Europe/Rome"    # 🌱 Change this
-LATITUDE = 00.00            # 🌱 Change this
-LONGITUDE = 00.00           # 🌱 Change this
+
+#------------------------------- - - - -  -  -   -
+# 🌱 Set your location
+# TIMEZONE must follow IANA format (e.g. "Europe/Rome", "America/New_York")
+# You can find valid timezones here:
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+TIMEZONE = "Europe/Rome"
+
+# 🌱 Set your coordinates (latitude / longitude)
+# You can find them easily on Google Maps:
+# https://www.google.com/maps (right click → "What's here?")
+LATITUDE = 00.00
+LONGITUDE = 00.00
+#------------------------------- - - - -  -  -   -
+
+
 
 STEPS_PER_DAY = 96
 STEP_MINUTES = 15
