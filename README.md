@@ -184,7 +184,7 @@ cd raspberrarium
 This will create a folder:
 
 ```text
-/home/[YO]/raspberrarium/
+/home/YOUR_USERNAME/raspberrarium/
 ```
 
 Your main script will be located at:
