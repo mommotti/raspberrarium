@@ -174,13 +174,13 @@ cd raspberrarium
 This will create a folder:
 
 ```text
-/home/pi/raspberrarium/
+/home/[YO]/raspberrarium/
 ```
 
 Your main script will be located at:
 
 ```text
-/home/pi/raspberrarium/raspberrarium.py
+/home/YOUR_USERNAME/raspberrarium/raspberrarium.py
 ```
 
 ---
@@ -190,7 +190,7 @@ Your main script will be located at:
 Before running the script, create a `.env` file in the project folder and set your timezone and coordinates. The sunrise, sunset, and moon phase calculations depend on these values.
 
 ```bash
-sudo nano /home/pi/raspberrarium/.env
+sudo nano /home/YOUR_USERNAME/raspberrarium/.env
 ```
 
 Then add the following:

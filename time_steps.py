@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 #------------------------------- - - - -  -  -   -
 # 🌱 Location is loaded from the .env file.
-# Run: sudo nano /home/pi/raspberrarium/.env
+# Run: sudo nano /home/YOUR_USERNAME/raspberrarium/.env
 # and set TIMEZONE, LATITUDE, LONGITUDE there.
 #------------------------------- - - - -  -  -   -
 
