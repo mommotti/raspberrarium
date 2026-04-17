@@ -15,6 +15,8 @@ from time_steps import LED_COUNT, MOON_COLOR, MOON_DEMO_PHASES, apply_brightness
 PIXEL_PIN = board.D18
 pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
 
+TOTAL_PHASES = len(MOON_DEMO_PHASES)
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Raspberrarium moon phase demo")
@@ -36,11 +38,11 @@ def main():
     args = parse_args()
 
     while True:
-        for name, left, right, base_brightness in MOON_DEMO_PHASES:
+        for i, (name, left, right, base_brightness) in enumerate(MOON_DEMO_PHASES, 1):
             final = apply_brightness(base_brightness, args.brightness)
             print(
-                f"{name} | left={left:.2f} right={right:.2f} | "
-                f"brightness={final:.3f}"
+                f"Phase {i} of {TOTAL_PHASES} | {name} | "
+                f"left={left:.2f} right={right:.2f} | brightness={final:.3f}"
             )
             set_moon(left, right, final)
             time.sleep(3)

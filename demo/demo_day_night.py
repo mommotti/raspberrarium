@@ -15,6 +15,8 @@ from time_steps import LED_COUNT, DAY_DEMO_PHASES, apply_brightness
 PIXEL_PIN = board.D18
 pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
 
+TOTAL_PHASES = len(DAY_DEMO_PHASES)
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Raspberrarium day/night demo")
@@ -36,11 +38,11 @@ def main():
     args = parse_args()
 
     while True:
-        for name, rgb, base_brightness, seconds in DAY_DEMO_PHASES:
+        for i, (name, rgb, base_brightness, seconds) in enumerate(DAY_DEMO_PHASES, 1):
             final = apply_brightness(base_brightness, args.brightness)
-            print(f"{name} | RGB={rgb} | brightness={final:.3f}")
+            print(f"Phase {i} of {TOTAL_PHASES} | {name} | RGB={rgb} | brightness={final:.3f}")
             set_all(rgb, final)
-            time.sleep(seconds)
+            time.sleep(seconds * 1.5)
 
 
 if __name__ == "__main__":
