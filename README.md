@@ -201,8 +201,8 @@ LATITUDE=00.00
 LONGITUDE=00.00
 ```
 
-- **TIMEZONE** must follow IANA format (e.g. `Europe/Rome`, `America/New_York`). Full list: [tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-- **LATITUDE / LONGITUDE** — find yours on [Google Maps](https://www.google.com/maps) (right-click → "What's here?")
+- **TIMEZONE**: must follow IANA format (e.g. `Europe/Rome`, `America/New_York`). Full list: [tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+- **LATITUDE / LONGITUDE**: find yours on [Google Maps](https://www.google.com/maps) (right-click → "What's here?")
 
 ---
 
@@ -297,7 +297,7 @@ With only two LEDs, the goal is not astronomical precision but a clean and reada
 
 ## Build your own
 
-The electronics, the 96-step cycle, and the moon-phase logic all live in this repository. The physical build — the jar, substrate layers, lid, and lighting enclosure — is documented with photos in the companion guide:
+The electronics, the 96-step cycle, and the moon-phase logic all live in this repository. The physical build, the jar, substrate layers, lid, and lighting enclosure,is documented with photos in the companion guide:
 
 ### 👉 **[mommotti.github.io/raspberrarium-site](https://mommotti.github.io/raspberrarium-site/)**
 
