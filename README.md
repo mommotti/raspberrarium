@@ -157,7 +157,7 @@ Raspberry Pi 3B+:
 Install dependencies:
 
 ```bash
-sudo pip3 install adafruit-blinka adafruit-circuitpython-neopixel rpi_ws281x astral --break-system-packages
+sudo pip3 install adafruit-blinka adafruit-circuitpython-neopixel rpi_ws281x astral python-dotenv --break-system-packages
 ```
 
 ---
@@ -187,17 +187,22 @@ Your main script will be located at:
 
 ## Set your location
 
-Before running the script, open `time_steps..py` and set your timezone and coordinates. The sunrise, sunset, and moon phase calculations depend on these values.
+Before running the script, create a `.env` file in the project folder and set your timezone and coordinates. The sunrise, sunset, and moon phase calculations depend on these values.
 
-```python
-# TIMEZONE must follow IANA format (e.g. "Europe/Rome", "America/New_York")
-# Full list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-TIMEZONE = "Europe/Rome"
-
-# Latitude / Longitude — find yours on Google Maps (right-click → "What's here?")
-LATITUDE = 00.00
-LONGITUDE = 00.00
+```bash
+sudo nano /home/pi/raspberrarium/.env
 ```
+
+Then add the following:
+
+```env
+TIMEZONE=Europe/Rome
+LATITUDE=00.00
+LONGITUDE=00.00
+```
+
+- **TIMEZONE** must follow IANA format (e.g. `Europe/Rome`, `America/New_York`). Full list: [tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+- **LATITUDE / LONGITUDE** — find yours on [Google Maps](https://www.google.com/maps) (right-click → "What's here?")
 
 ---
 

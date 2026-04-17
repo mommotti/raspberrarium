@@ -1,24 +1,23 @@
+import os
 from datetime import datetime, date, timedelta
 from zoneinfo import ZoneInfo
 
 from astral import LocationInfo
 from astral.sun import sun
-
+from dotenv import load_dotenv
 
 
 #------------------------------- - - - -  -  -   -
-# 🌱 Set your location
-# TIMEZONE must follow IANA format (e.g. "Europe/Rome", "America/New_York")
-# You can find valid timezones here:
-# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-TIMEZONE = "Europe/Rome"
-
-# 🌱 Set your coordinates (latitude / longitude)
-# You can find them easily on Google Maps:
-# https://www.google.com/maps (right click → "What's here?")
-LATITUDE = 00.00
-LONGITUDE = 00.00
+# 🌱 Location is loaded from the .env file.
+# Run: sudo nano /home/pi/raspberrarium/.env
+# and set TIMEZONE, LATITUDE, LONGITUDE there.
 #------------------------------- - - - -  -  -   -
+
+load_dotenv()
+
+TIMEZONE = os.environ.get("TIMEZONE", "Europe/Rome")
+LATITUDE = float(os.environ.get("LATITUDE", 0.0))
+LONGITUDE = float(os.environ.get("LONGITUDE", 0.0))
 
 
 
