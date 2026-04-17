@@ -2,6 +2,7 @@
 
 import argparse
 import itertools
+import os
 import sys
 import threading
 import time
@@ -23,20 +24,28 @@ _lock = threading.Lock()
 _status = "Day/night demo running..."
 
 
+def _setup_fixed_header():
+    rows = os.get_terminal_size().lines
+    sys.stdout.write("\033[2J\033[H")
+    sys.stdout.write(f"{_status} 💚🌱🫙🌱\n")
+    sys.stdout.write(f"\033[2;{rows}r")
+    sys.stdout.write("\033[2;1H")
+    sys.stdout.flush()
+
+
 def _status_loop():
     icons = ("🌙", "🌅", "☀️", "🌇", "🌌")
     it = itertools.cycle(icons)
     while True:
         icon = next(it)
         with _lock:
-            sys.stdout.write(f"\r{_status} {icon} 💚🫙🌱 {icon}   ")
+            sys.stdout.write(f"\033[s\033[1;1H\033[2K{_status} 💚{icon}🫙🌱   \033[u")
             sys.stdout.flush()
         time.sleep(0.8)
 
 
 def _log(message):
     with _lock:
-        sys.stdout.write("\r" + " " * 120 + "\r")
         print(message)
         sys.stdout.flush()
 
@@ -59,6 +68,7 @@ def set_all(rgb, brightness):
 
 def main():
     args = parse_args()
+    _setup_fixed_header()
     threading.Thread(target=_status_loop, daemon=True).start()
 
     while True:
@@ -70,4 +80,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        sys.stdout.write("\033[r\033[2J\033[H")
+        sys.stdout.flush()

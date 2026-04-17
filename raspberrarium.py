@@ -7,6 +7,7 @@ Runs a continuous loop that drives two WS2812 LEDs through a realistic
 
 import argparse
 import itertools
+import os
 import sys
 import threading
 import time
@@ -44,7 +45,7 @@ pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
 
 
 # ---------------------------------------------------------------------------
-# Status line (threaded spinner shown while running)
+# Status line (fixed header with animated spinner)
 # ---------------------------------------------------------------------------
 
 _status_lock = threading.Lock()
@@ -52,28 +53,33 @@ _status_message = ""
 _show_logs = True
 
 
+def _setup_fixed_header():
+    """Reserve line 1 for the spinner; scroll region starts at line 2."""
+    rows = os.get_terminal_size().lines
+    sys.stdout.write("\033[2J\033[H")
+    sys.stdout.write(f"{_status_message} 💚🌱🫙🌱\n")
+    sys.stdout.write(f"\033[2;{rows}r")
+    sys.stdout.write("\033[2;1H")
+    sys.stdout.flush()
+
+
 def _status_loop():
-    """Background spinner that shows the script is alive."""
-    day_icons  = ("🌙", "🌅", "☀️", "🌇", "🌌")
-    moon_icons = ("🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘")
-
-    day_iter  = itertools.cycle(day_icons)
-    moon_iter = itertools.cycle(moon_icons)
-
+    """Background spinner pinned to line 1."""
+    icons = ("🌙", "🌅", "☀️", "🌇", "🌌", "🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘")
+    it = itertools.cycle(icons)
     while True:
-        d, m = next(day_iter), next(moon_iter)
+        icon = next(it)
         with _status_lock:
-            sys.stdout.write(f"\r{_status_message} {d} 💚🫙🌱 {m}   ")
+            sys.stdout.write(f"\033[s\033[1;1H\033[2K{_status_message} 💚{icon}🫙🌱   \033[u")
             sys.stdout.flush()
         time.sleep(0.8)
 
 
 def _log(message):
-    """Print a log line, clearing the spinner first."""
+    """Print a log line below the fixed header."""
     if not _show_logs:
         return
     with _status_lock:
-        sys.stdout.write("\r" + " " * 120 + "\r")
         print(message)
         sys.stdout.flush()
 
@@ -130,12 +136,13 @@ def main():
         else "Your Raspberrarium is running..."
     )
 
+    _setup_fixed_header()
     threading.Thread(target=_status_loop, daemon=True).start()
 
     last_day = None
     daily_states = None
     sun_times = None
-    cached_moon = None  # (left, right, brightness, value, name)
+    cached_moon = None
 
     while True:
         now = datetime.now(tz)
@@ -192,4 +199,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        sys.stdout.write("\033[r\033[2J\033[H")
+        sys.stdout.flush()
