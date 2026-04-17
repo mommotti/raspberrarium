@@ -265,6 +265,7 @@ Description=Raspberrarium Lighting System
 After=network.target
 
 [Service]
+# Set the brightness: 1=low, 2=medium, 3=high
 ExecStart=/usr/bin/python3 /home/YOUR_USERNAME_HERE/raspberrarium/raspberrarium.py --silent --brightness 3
 WorkingDirectory=/home/YOUR_USERNAME_HERE/raspberrarium
 Restart=always
