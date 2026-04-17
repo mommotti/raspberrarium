@@ -1,7 +1,9 @@
 """Raspberrarium — day/night cycle demo."""
 
 import argparse
+import itertools
 import sys
+import threading
 import time
 
 import board
@@ -16,6 +18,27 @@ PIXEL_PIN = board.D18
 pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
 
 TOTAL_PHASES = len(DAY_DEMO_PHASES)
+
+_lock = threading.Lock()
+_status = "Day/night demo running..."
+
+
+def _status_loop():
+    icons = ("🌙", "🌅", "☀️", "🌇", "🌌")
+    it = itertools.cycle(icons)
+    while True:
+        icon = next(it)
+        with _lock:
+            sys.stdout.write(f"\r{_status} {icon} 💚🫙🌱 {icon}   ")
+            sys.stdout.flush()
+        time.sleep(0.8)
+
+
+def _log(message):
+    with _lock:
+        sys.stdout.write("\r" + " " * 120 + "\r")
+        print(message)
+        sys.stdout.flush()
 
 
 def parse_args():
@@ -36,11 +59,12 @@ def set_all(rgb, brightness):
 
 def main():
     args = parse_args()
+    threading.Thread(target=_status_loop, daemon=True).start()
 
     while True:
         for i, (name, rgb, base_brightness, seconds) in enumerate(DAY_DEMO_PHASES, 1):
             final = apply_brightness(base_brightness, args.brightness)
-            print(f"Phase {i} of {TOTAL_PHASES} | {name} | RGB={rgb} | brightness={final:.3f}")
+            _log(f"Phase {i} of {TOTAL_PHASES} | {name} | RGB={rgb} | brightness={final:.3f}")
             set_all(rgb, final)
             time.sleep(seconds * 1.5)
 
