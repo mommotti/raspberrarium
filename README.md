@@ -112,6 +112,16 @@ _The GIF is also a sped-up demo; in the actual build each phase lasts around a w
 
 ---
 
+## See it in action
+
+<p align="center">
+  <img src="https://mommotti.github.io/raspberrarium-site/images/demo.gif" width="400">
+</p>
+
+_The day/night demo script running on the real hardware inside the jar._
+
+---
+
 ## Hemisphere note
 
 <p align="center">
