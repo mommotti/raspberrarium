@@ -51,10 +51,13 @@ pixels = neopixel.NeoPixel(PIXEL_PIN, LED_COUNT, auto_write=False)
 _status_lock = threading.Lock()
 _status_message = ""
 _show_logs = True
+_has_tty = sys.stdout.isatty()
 
 
 def _setup_fixed_header():
     """Reserve line 1 for the spinner; scroll region starts at line 2."""
+    if not _has_tty:
+        return
     rows = os.get_terminal_size().lines
     sys.stdout.write("\033[2J\033[H")
     sys.stdout.write(f"{_status_message} 💚🌱🫙🌱\n")
@@ -65,6 +68,8 @@ def _setup_fixed_header():
 
 def _status_loop():
     """Background spinner pinned to line 1."""
+    if not _has_tty:
+        return
     icons = ("🌙", "🌅", "☀️", "🌇", "🌌", "🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘")
     it = itertools.cycle(icons)
     while True:
@@ -202,5 +207,6 @@ if __name__ == "__main__":
     try:
         main()
     finally:
-        sys.stdout.write("\033[r\033[2J\033[H")
-        sys.stdout.flush()
+        if _has_tty:
+            sys.stdout.write("\033[r\033[2J\033[H")
+            sys.stdout.flush()
