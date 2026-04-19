@@ -37,7 +37,6 @@ LED_COUNT = 2
 # Timing
 # ---------------------------------------------------------------------------
 
-STEPS_PER_DAY = 96
 MOON_WINDOW_HOURS = 3
 REFRESH_SECONDS = 10
 
@@ -301,33 +300,13 @@ def state_at_time(now, sun_times):
     return DEEP_NIGHT, B_DEEP_NIGHT
 
 
-def build_daily_steps(current_date=None, timezone=TIMEZONE,
-                      latitude=LATITUDE, longitude=LONGITUDE,
-                      steps_per_day=STEPS_PER_DAY):
+def get_today_sun_times_for_date(current_date=None, timezone=TIMEZONE,
+                                 latitude=LATITUDE, longitude=LONGITUDE):
     """
-    Pre-compute the full day as a tuple of (rgb, brightness) pairs.
+    Return sun times for a given date.
 
-    Returns (states, sun_times) where states is a tuple of length steps_per_day.
-    Each entry is (rgb_tuple, brightness_float).
+    Returns sun_times dict from Astral.
+    The main loop calls state_at_time() directly each cycle for
+    minute-accurate color, so no pre-computed step table is needed.
     """
-    tz = ZoneInfo(timezone)
-    if current_date is None:
-        current_date = date.today()
-
-    sun_times = get_today_sun_times(current_date, timezone, latitude, longitude)
-    day_start = datetime.combine(current_date, datetime.min.time(), tz)
-    step_minutes = 1440 // steps_per_day
-
-    states = tuple(
-        state_at_time(day_start + timedelta(minutes=i * step_minutes), sun_times)
-        for i in range(steps_per_day)
-    )
-
-    return states, sun_times
-
-
-def get_current_step_index(now, steps_per_day=STEPS_PER_DAY):
-    """Return the current step index (0-based) for the given time."""
-    minutes = now.hour * 60 + now.minute
-    step_minutes = 1440 // steps_per_day
-    return min(steps_per_day - 1, minutes // step_minutes)
+    return get_today_sun_times(current_date, timezone, latitude, longitude)

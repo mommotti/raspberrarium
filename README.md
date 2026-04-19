@@ -19,13 +19,13 @@
 ---
 
 A minimal lighting system using a Raspberry Pi and two WS2812 LEDs.
-_(update! Added 96 light steps and 3 levels of brightness)_
+_(update! Minute-accurate light cycle and 3 levels of brightness)_
 
 This project simulates:
 
 - a real daylight cycle (sunrise, noon, sunset)
 - real moon phases during the night
-- a smooth 24-hour light progression using 96 time steps
+- a smooth 24-hour light progression with minute-accurate transitions
 
 ---
 
@@ -86,7 +86,7 @@ This allows a simple but effective representation of the moon:
 - full moon → both LEDs on
 - new moon → off
 
-The daylight cycle is divided into **96 steps per day** (one every 15 minutes), creating a smooth transition between all phases of the day.
+The daylight color is calculated in real time every 10 seconds, creating a perfectly smooth transition between all phases of the day — accurate to the minute.
 
 > The build guide on [mommotti.github.io/raspberrarium-site](https://mommotti.github.io/raspberrarium-site/) shows how the two LEDs look once mounted and diffused inside the jar.
 
@@ -100,7 +100,7 @@ The daylight cycle is divided into **96 steps per day** (one every 15 minutes), 
   <img src="images/demo_day_night.gif" width="350">
 </p>
 
-_The GIF is a sped-up demo made from a shortened version of the code for illustration; the real code runs the full 96-step cycle over 24 hours._
+_The GIF is a sped-up demo made from a shortened version of the code for illustration; the real code runs a continuous minute-accurate cycle over 24 hours._
 
 ### Moon phases
 
@@ -153,7 +153,7 @@ Raspberry Pi 3B+:
 
 ## Features
 
-- 96-step daily light cycle (smooth transitions)
+- Minute-accurate daily light cycle (smooth continuous transitions)
 - Real sunrise and sunset based on location
 - Moon phase simulation using two LEDs
 - Adjustable global brightness (levels 1–3)
@@ -308,7 +308,7 @@ With only two LEDs, the goal is not astronomical precision but a clean and reada
 
 ## Build your own
 
-The electronics, the 96-step cycle, and the moon-phase logic all live in this repository. The physical build, the jar, substrate layers, lid, and lighting enclosure,is documented with photos in the companion guide:
+The electronics, the lighting engine, and the moon-phase logic all live in this repository. The physical build, the jar, substrate layers, lid, and lighting enclosure, is documented with photos in the companion guide:
 
 ### 👉 **[mommotti.github.io/raspberrarium-site](https://mommotti.github.io/raspberrarium-site/)**
 

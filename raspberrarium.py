@@ -22,15 +22,14 @@ from time_steps import (
     LATITUDE,
     LONGITUDE,
     LED_COUNT,
-    STEPS_PER_DAY,
     MOON_WINDOW_HOURS,
     MOON_COLOR,
     REFRESH_SECONDS,
     apply_brightness,
     scale_color,
     get_moon_led_state,
-    build_daily_steps,
-    get_current_step_index,
+    get_today_sun_times_for_date,
+    state_at_time,
 )
 
 
@@ -145,7 +144,6 @@ def main():
     threading.Thread(target=_status_loop, daemon=True).start()
 
     last_day = None
-    daily_states = None
     sun_times = None
     cached_moon = None
 
@@ -153,14 +151,13 @@ def main():
         now = datetime.now(tz)
         today = now.date()
 
-        # Recalculate once per day.
+        # Recalculate sun times once per day.
         if last_day != today:
-            daily_states, sun_times = build_daily_steps(
+            sun_times = get_today_sun_times_for_date(
                 current_date=today,
                 timezone=TIMEZONE,
                 latitude=LATITUDE,
                 longitude=LONGITUDE,
-                steps_per_day=STEPS_PER_DAY,
             )
             cached_moon = get_moon_led_state(today)
             last_day = today
@@ -191,12 +188,11 @@ def main():
                 f"brightness={final:.3f}"
             )
         else:
-            idx = get_current_step_index(now, STEPS_PER_DAY)
-            rgb, base_br = daily_states[idx]
+            rgb, base_br = state_at_time(now, sun_times)
             final = apply_brightness(base_br, brightness_level)
             set_all(rgb, final)
             _log(
-                f"{now:%Y-%m-%d %H:%M:%S} | STEP={idx:02d} | "
+                f"{now:%Y-%m-%d %H:%M:%S} | "
                 f"RGB={rgb} | brightness={final:.3f}"
             )
 
